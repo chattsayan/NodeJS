@@ -1,7 +1,7 @@
-// Grouping all Files
+// Grouping all Files/Modules
 const divide = require("./division");
 const multiply = require("./multiply");
 const substract = require("./substraction");
-const calculateSum = require("./sum");
+const { calculateSum, z } = require("./sum");
 
-module.exports = { divide, multiply, substract, calculateSum };
+module.exports = { divide, multiply, substract, calculateSum, z };
