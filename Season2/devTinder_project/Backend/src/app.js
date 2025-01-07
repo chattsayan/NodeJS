@@ -2,17 +2,11 @@ const express = require("express");
 
 const app = express();
 
-// the function inside is know as request handler
-app.get("/", (req, res) => {
-  res.send("Welcome to Dashboard");
-});
+app.get("/user/:userId/:pass", (req, res) => {
+  // /user/102/sayan
+  console.log(req.params); // op.- { userId: 102, pass: 'sayan' }
 
-app.get("/hello", (req, res) => {
-  res.send("hello everyone!");
-});
-
-app.get("/test", (req, res) => {
-  res.send("hello from the server");
+  res.send("request sent");
 });
 
 app.listen(7777, () => {

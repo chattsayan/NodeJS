@@ -9,3 +9,23 @@
 - what are dependencies
 - what is the use of '-g' while npm install
 - difference between caret & tilde (^ vs ~)
+
+## S2E4 - Routing & Request Handlers
+
+- initialize git =>
+  git init
+  git add .
+  git commit -m "message"
+- create remote repo on github
+  git remote add origin https://github.com/<username>/devTinder.git
+  git branch -M main
+- push all code to remove origin
+  git push -u origin main
+- routes & route extensions, eg.- /hello, /, /hello/2, /xyz
+- order of routes
+- for API testing, use POSTMAN
+- write logic to handle GET, POST, PUT, DELETE API calls and test them on Postman
+- explore routing and use of ?, +, (), \* in the routes
+- use of REGEX in routes /a/. /.\*fly$/
+- reading the query params in the routes
+- reading the dynamic routes
