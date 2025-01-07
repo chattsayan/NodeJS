@@ -1,0 +1,11 @@
+- create a repository => \devTinder_project\Backend
+- initialize the repository => npm init
+- node_modules, package.json, package-lock.json
+- install Express JS => npm i express
+- create a server
+- listen to port 3000
+- write request handlers for /test, /hello
+- install nodemon and update scripts inside package.json => npm i nodemon, this monitors the session without rebooting the servers everytime
+- what are dependencies
+- what is the use of '-g' while npm install
+- difference between caret & tilde (^ vs ~)
