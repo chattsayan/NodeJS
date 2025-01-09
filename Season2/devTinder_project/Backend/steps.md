@@ -1,5 +1,5 @@
 - create a repository => \devTinder_project\Backend
-- initialize the repository => npm init
+- initialize the repository => npm in it
 - node_modules, package.json, package-lock.json
 - install Express JS => npm i express
 - create a server
@@ -29,3 +29,15 @@
 - use of REGEX in routes /a/. /.\*fly$/
 - reading the query params in the routes
 - reading the dynamic routes
+
+## S2E5 - Middleware & Error Handling
+
+- multiple route handlers
+- next()
+- next function & errors along with res.send()
+- app.use('/route', rH, [rH2, rH3], rH4, rH5)
+- what is MIDDLEWARE? why middleware?
+- how express JS handles requests behind the scenes?
+- diff b/w app.use & app.all
+- auth middleware for admin
+- auth middleware for all user routes, except /user/login
