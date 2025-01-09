@@ -3,6 +3,9 @@ const express = require("express");
 
 const app = express();
 
+// importing modules for TYPE 9
+const { adminAuth, userAuth } = require("./auth");
+
 // ----- TYPE 1 -----
 app.use("/user", (req, res) => {
   console.log("route user 1");
@@ -170,6 +173,26 @@ app.get(
     res.send("1st route handler");
   }
 );
+
+// ----- TYPE 9 -----
+// ----- MIDDLEWARE -----
+app.use("/admin", adminAuth);
+
+app.use("/user/login", (req, res) => {
+  res.send("user logged in");
+});
+
+app.get("/user", userAuth, (req, res) => {
+  res.send("user data sent");
+});
+
+app.get("/admin/getAllData", (req, res) => {
+  res.send("all data sent");
+});
+
+app.get("/admin/deleteUser", (req, res) => {
+  res.send("user deleted");
+});
 
 app.listen(7777, () => {
   console.log("server is successfully listening on port 7777...");
