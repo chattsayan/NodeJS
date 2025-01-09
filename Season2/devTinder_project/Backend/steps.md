@@ -41,3 +41,16 @@
 - diff b/w app.use & app.all
 - auth middleware for admin
 - auth middleware for all user routes, except /user/login
+- error handling => (err, req, res, next) => {}
+
+## S2E6 - Database, Schema & Models | Mongoose
+
+- Install mongoose library => npm i mongoose
+- using mongoose to connect to DB
+- connect your application to the database "<connection-url>/devTinder"
+- call connectDB function and connect to DB before starting application on 7777
+- create userSchema & user Model
+- inserting data into Database, by creating API
+- create POST /signup API to add data to database
+- push some documents using API calls from postman
+- creating new instance of the User model, saving data in Mongo DB database
