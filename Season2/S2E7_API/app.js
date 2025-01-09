@@ -10,7 +10,7 @@ app.post("/signup", async (req, res) => {
   // ----- INSTANCE -----
   // creating a new instance of the User model
   // This creates a new instance of the User model, filling in fields like firstName, email, etc.
-  // ----- DYNAMIC API -----
+  // ----- DYNAMIC API (data stored in postman) -----
   const user = new User(req.body);
 
   // ----- STATIC DATA -----

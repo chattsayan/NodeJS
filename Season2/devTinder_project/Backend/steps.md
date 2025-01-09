@@ -54,3 +54,11 @@
 - create POST /signup API to add data to database
 - push some documents using API calls from postman
 - creating new instance of the User model, saving data in Mongo DB database
+
+## S2E7 - Working with APIs
+
+# passing dynamic data in API-
+
+- js object vs. JSON
+- add express.json middleware to your app
+- make signup API dynamic to receive data from end user
