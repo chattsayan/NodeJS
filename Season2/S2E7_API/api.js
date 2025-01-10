@@ -3,10 +3,26 @@ const connectDB = require("./config/database");
 const app = express();
 const User = require("./models/user");
 
+// reads the JSON object, converts it into JS object and adds the JS object back to req
 app.use(express.json());
 
 app.post("/signup", async (req, res) => {
+  // ----- INSTANCE -----
+  // creating a new instance of the User model
+  // This creates a new instance of the User model, filling in fields like firstName, email, etc.
+  // ----- DYNAMIC API (data stored in postman) -----
   const user = new User(req.body);
+
+  // ----- STATIC DATA -----
+  // const user = new User({
+  //   firstName: "Virat",
+  //   lastName: "Koli",
+  //   email: "koli@virat.com",
+  //   password: "virat@123",
+  //   age: 38,
+  //   gender: "Male",
+  // });
+
   try {
     // Saving the User to the Database
     await user.save();
@@ -58,7 +74,7 @@ app.patch("/user", async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(userId, data, {
       // options here shows which updated data need to be displayed, ie., before / after updation
-      // if no options provided, previous data before updation will be displayed
+      // if no options provided, the previous data before updation will be displayed
       returnDocument: "after",
     });
     res.send(`User Updated Successfully: \n${user}`);
