@@ -47,7 +47,7 @@
 
 - Install mongoose library => npm i mongoose
 - using mongoose to connect to DB
-- connect your application to the database "<connection-url>/devTinder"
+- connect your application to the database "<connection-url>/devTinder", if not DB named as devTinder, it will automatically create one
 - call connectDB function and connect to DB before starting application on 7777
 - create userSchema & user Model
 - inserting data into Database, by creating API
@@ -77,3 +77,11 @@
 - add API validation for each field
 - install validator library => npm i validator
 - explore validator library function and user it for password, email, photo
+
+## S2E9 - Encrypting Password
+
+- validate data in /signup API
+- install bcrypt package => npm i bcrypt
+- create encryptPassword using bcrypt.hash & save the user with encrypted password
+- create /login API
+- compare passwords and throw errors if email/password is invalid
