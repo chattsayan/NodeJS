@@ -60,6 +60,7 @@ app.patch("/user", async (req, res) => {
       // options here shows which updated data need to be displayed, ie., before / after updation
       // if no options provided, previous data before updation will be displayed
       returnDocument: "after",
+      runValidators: true,
     });
     res.send(`User Updated Successfully: \n${user}`);
   } catch (err) {

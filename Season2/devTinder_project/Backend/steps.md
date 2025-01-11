@@ -57,8 +57,6 @@
 
 ## S2E7 - Working with APIs
 
-# passing dynamic data in API-
-
 - js object vs. JSON
 - add express.json middleware to your app
 - make signup API dynamic to receive data from end user
@@ -66,3 +64,12 @@
 - API - get user by email
 - API - delete user by ID
 - API - update user by ID and email
+
+## S2E8 - Data Sanitization & Schema Validation
+
+- explore schemaType options from the documentation
+- add required, unique, lowercase, min, minLength, trim
+- add default
+- create a custom validate function for gender
+- improve the DB schema - PUT all appropriate validations on each field in schema
+- add timestamps to the userSchema
