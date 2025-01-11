@@ -3,17 +3,22 @@ const mongoose = require("mongoose");
 // ----- CREATING SCHEMA -----
 const userSchema = new mongoose.Schema(
   {
-    firstName: { type: String, required: true, minLength: 1, maxLength: 80 },
+    firstName: {
+      type: String,
+      required: [true, "First name is required"],
+      minLength: [1, "First name must be at least 1 character"],
+      maxLength: 80,
+    },
     lastName: { type: String },
     email: {
       type: String,
-      required: true,
+      required: [true, "email is required"],
       lowercase: true,
       trim: true,
       unique: true,
     },
-    password: { type: String, required: true, unique: true },
-    age: { type: Number, min: 18 },
+    password: { type: String, required: true, minLength: 8 },
+    age: { type: Number, min: [18, "Age must be atleast 18"] },
     gender: {
       type: String,
       // ----- CUSTOM VALIDATION -----
