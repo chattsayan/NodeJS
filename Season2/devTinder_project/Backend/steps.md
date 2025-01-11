@@ -75,3 +75,5 @@
 - add timestamps to the userSchema
 - add API level validation on Patch request & /signup POST API
 - add API validation for each field
+- install validator library => npm i validator
+- explore validator library function and user it for password, email, photo

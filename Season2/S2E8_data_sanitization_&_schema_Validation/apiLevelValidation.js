@@ -10,9 +10,9 @@ app.post("/signup", async (req, res) => {
   try {
     // Saving the User to the Database
     await user.save();
-    res.send("User added successfully!");
+    res.status(201).send({ message: "User added successfully!", user });
   } catch (err) {
-    res.send(400).send("Error saving the User: " + err.message);
+    res.status(400).send("Error saving the User: " + err.message);
   }
 });
 
@@ -20,10 +20,15 @@ app.post("/signup", async (req, res) => {
 app.get("/user", async (req, res) => {
   try {
     const userEmail = req.body.email;
-    const users = await User.findOne({ email: userEmail });
-    res.send(users);
+    const user = await User.findOne({ email: userEmail });
+
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    res.send(user);
   } catch (err) {
-    res.status(400).send("No such email exists");
+    res.status(500).send({ error: "Server error", details: err.message });
   }
 });
 
@@ -33,20 +38,27 @@ app.get("/feed", async (req, res) => {
     const users = await User.find({});
     res.send(users);
   } catch (err) {
-    res.status(400).send("Something went wrong- " + err.message);
+    res
+      .status(500)
+      .send({ error: "Failed to fetch users", details: err.message });
   }
 });
 
 // delete by id
 app.delete("/user", async (req, res) => {
   const userId = req.body.userId;
-  console.log(userId);
 
   try {
     const user = await User.findByIdAndDelete(userId);
-    res.send(user + ": user deleted successfully");
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    res.send({ message: "User deleted successfully", user });
   } catch (err) {
-    res.send(400).send("User Deletion failed");
+    res
+      .status(500)
+      .send({ error: "User deletion failed", details: err.message });
   }
 });
 
@@ -63,12 +75,14 @@ app.patch("/user/:_id", async (req, res) => {
     );
 
     if (!isUpdatedAllowed) {
-      throw new Error("Update not allowed");
+      // res.send(400).send("Update not allowed");
+      return res.status(400).send({ error: "Update contains invalid fields" });
     }
 
     // validating skills, that should not reach more than 10
     if (data?.skills.length > 10) {
-      throw new Error("Maximum 10 skills allowed");
+      // res.send(400).send("Maximum 10 skills allowed");
+      return res.status(400).send({ error: "Maximum 10 skills allowed" });
     }
     // ----- API LEVEL VALIDATION -----
 
@@ -78,9 +92,14 @@ app.patch("/user/:_id", async (req, res) => {
       returnDocument: "after",
       runValidators: true,
     });
-    res.send(`User Updated Successfully: \n${user}`);
+
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    res.send({ message: "User updated successfully", user });
   } catch (err) {
-    res.send(400).send("User Update failed");
+    res.status(500).send({ error: "User update failed", details: err.message });
   }
 });
 
@@ -92,12 +111,13 @@ app.patch("/user", async (req, res) => {
     const user = await User.findOneAndUpdate(emailId, { $set: data });
 
     if (!data) {
-      res.send(400).send("Data not found");
+      return res.status(404).send({ error: "User not found" });
     } else {
-      res.send(user);
+      // res.send(user);
+      res.send({ message: "User updated successfully", user });
     }
   } catch (err) {
-    res.send(400).send("User Update failed");
+    res.status(500).send({ error: "User update failed", details: err.message });
   }
 });
 
