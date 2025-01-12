@@ -85,3 +85,20 @@
 - create encryptPassword using bcrypt.hash & save the user with encrypted password
 - create /login API
 - compare passwords and throw errors if email/password is invalid
+
+## S2E10 - Authentication, JWT and Cookie
+
+- what happens when user logins?
+- authentication flow
+- when cookie expires
+- authentication vs authorization
+- install cookie-parser => npm i cookie-parser
+- create GET /profile API and check if getting the cookie back
+- install jwtwebtoken => npm i jwtwebtoken
+- in login API, after email & Password validation, create a JWT token and send it to user in cookies
+- read the cookies inside your profile API and find the logged in user
+- userAuth middleware
+- ass the userAuth middleware in profile API and a new sendConnectionRequest API
+- set the expiry of JWT token and cookies to 7 days
+- create userSchema method to getJWT()
+- create userSchema method to compare password(passwordInputByUser)
