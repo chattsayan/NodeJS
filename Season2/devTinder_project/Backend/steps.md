@@ -102,3 +102,42 @@
 - set the expiry of JWT token and cookies to 7 days
 - create userSchema method to getJWT()
 - create userSchema method to compare password(passwordInputByUser)
+
+## S2E11 - Diving into APIs and Express Router
+
+# DevTinder API list-
+
+authRouter
+
+- POST /signup
+- POST /login
+- POST /logout
+
+profileRouter
+
+- GET /profile/view
+- PATCH /profile/edit
+- PATCH /profile/password
+
+connectionRequestRouter
+
+- POST /request/send/interested/:userId
+- POST /request/send/ignored/:userId
+- POST /request/review/accepted/:requestId
+- POST /request/review/rejected/:requestId
+
+userRouter
+
+- GET /connections
+- GET /requests/received
+- GET /feed - gets you the profiles of other users on platform
+
+Status: ignore, interested, accepted, rejected
+
+# express Router
+
+- using express.Router()
+- grouping multiple routes under respective routers
+- created routes folder for managing auth, profile and request routers
+- created authRouter, profileRouter, requestRouter
+- imported these routers in app.js

@@ -1,17 +1,11 @@
 const express = require("express");
-const connectDB = require("./config/database");
-const app = express();
-const User = require("./models/user");
-const { validateSignUpData } = require("./utils/validation");
+const { validateSignUpData } = require("../utils/validation");
 const bcrypt = require("bcrypt");
-const cookieParser = require("cookie-parser");
-const { userAuth } = require("./middlewares/auth");
+const User = require("../models/user");
 
-// ----- MIDDLEWARE -----
-app.use(express.json());
-app.use(cookieParser());
+const router = express.Router();
 
-app.post("/signup", async (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
     // the moment user signup below things to happen:
     // (1). Validation of User, without which not to proceed
@@ -40,7 +34,7 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-app.post("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -73,35 +67,4 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/profile", userAuth, async (req, res) => {
-  try {
-    const user = req.user;
-
-    res.send(user);
-  } catch (err) {
-    res.status(401).send("ERROR: " + err.message);
-  }
-});
-
-app.post("/sendConnectionRequest", userAuth, async (req, res) => {
-  const user = req.user;
-
-  // sending a connection request
-  console.log("sending a connection request");
-
-  res.send(`${user.firstName} sent the connection request!`);
-});
-
-// ----- CONNECT TO DATABASE -----
-connectDB()
-  .then(() => {
-    console.log("DB Connection Established...");
-
-    // ----- LISTENING TO SERVER -----
-    app.listen(7777, () => {
-      console.log("server is successfully listening on port 7777...");
-    });
-  })
-  .catch((err) => {
-    console.error("DB Connection Failed- ", err);
-  });
+module.exports = router;
