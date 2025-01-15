@@ -5,6 +5,7 @@ const User = require("../models/user");
 
 const router = express.Router();
 
+// ----- SIGNUP -----
 router.post("/signup", async (req, res) => {
   try {
     // the moment user signup below things to happen:
@@ -34,6 +35,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+// ----- LOGIN -----
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -65,6 +67,16 @@ router.post("/login", async (req, res) => {
   } catch (err) {
     res.status(401).send(`Login Error: ${err.message}`);
   }
+});
+
+// ----- LOGOUT -----
+router.post("/logout", async (req, res) => {
+  // chain method
+  res
+    .cookie("token", null, {
+      expires: new Date(Date.now()),
+    })
+    .send("Logout successful");
 });
 
 module.exports = router;

@@ -10,7 +10,7 @@
 - what is the use of '-g' while npm install
 - difference between caret & tilde (^ vs ~)
 
-## S2E4 - Routing & Request Handlers
+# S2E4 - Routing & Request Handlers
 
 - initialize git =>
   git init
@@ -30,7 +30,7 @@
 - reading the query params in the routes
 - reading the dynamic routes
 
-## S2E5 - Middleware & Error Handling
+# S2E5 - Middleware & Error Handling
 
 - multiple route handlers
 - next()
@@ -43,7 +43,7 @@
 - auth middleware for all user routes, except /user/login
 - error handling => (err, req, res, next) => {}
 
-## S2E6 - Database, Schema & Models | Mongoose
+# S2E6 - Database, Schema & Models | Mongoose
 
 - Install mongoose library => npm i mongoose
 - using mongoose to connect to DB
@@ -55,7 +55,7 @@
 - push some documents using API calls from postman
 - creating new instance of the User model, saving data in Mongo DB database
 
-## S2E7 - Working with APIs
+# S2E7 - Working with APIs
 
 - js object vs. JSON
 - add express.json middleware to your app
@@ -65,7 +65,7 @@
 - API - delete user by ID
 - API - update user by ID and email
 
-## S2E8 - Data Sanitization & Schema Validation
+# S2E8 - Data Sanitization & Schema Validation
 
 - explore schemaType options from the documentation
 - add required, unique, lowercase, min, minLength, trim
@@ -78,7 +78,7 @@
 - install validator library => npm i validator
 - explore validator library function and user it for password, email, photo
 
-## S2E9 - Encrypting Password
+# S2E9 - Encrypting Password
 
 - validate data in /signup API
 - install bcrypt package => npm i bcrypt
@@ -86,7 +86,7 @@
 - create /login API
 - compare passwords and throw errors if email/password is invalid
 
-## S2E10 - Authentication, JWT and Cookie
+# S2E10 - Authentication, JWT and Cookie
 
 - what happens when user logins?
 - authentication flow
@@ -103,9 +103,9 @@
 - create userSchema method to getJWT()
 - create userSchema method to compare password(passwordInputByUser)
 
-## S2E11 - Diving into APIs and Express Router
+# S2E11 - Diving into APIs and Express Router
 
-# DevTinder API list-
+## DevTinder API list-
 
 authRouter
 
@@ -117,7 +117,7 @@ profileRouter
 
 - GET /profile/view
 - PATCH /profile/edit
-- PATCH /profile/password
+- PATCH /profile/password - forgot password API
 
 connectionRequestRouter
 
@@ -134,10 +134,11 @@ userRouter
 
 Status: ignore, interested, accepted, rejected
 
-# express Router
+## express Router
 
 - using express.Router()
 - grouping multiple routes under respective routers
 - created routes folder for managing auth, profile and request routers
 - created authRouter, profileRouter, requestRouter
 - imported these routers in app.js
+- API creation for authRouter, profileRouter
