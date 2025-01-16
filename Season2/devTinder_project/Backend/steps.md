@@ -121,10 +121,8 @@ profileRouter
 
 connectionRequestRouter
 
-- POST /request/send/interested/:userId
-- POST /request/send/ignored/:userId
-- POST /request/review/accepted/:requestId
-- POST /request/review/rejected/:requestId
+- POST /request/send/:status/:userId - status (ignore/interested)
+- POST /request/review/:status/:requestId - status (accepted/rejected)
 
 userRouter
 
@@ -142,3 +140,14 @@ Status: ignore, interested, accepted, rejected
 - created authRouter, profileRouter, requestRouter
 - imported these routers in app.js
 - API creation for authRouter, profileRouter
+- import these routers in app.js
+- create POST /logout API
+- create PATCH /profile/edit API
+- validate all data in every POST, PATCH api
+- create connection request schema
+- send connection request API
+- proper validation of data
+- $or query, $and query in mongoDB
+- read about index in mongoDB
+- why do we need index in DB? adv and disadv of creating indexes?
+- what are compound indexes?
