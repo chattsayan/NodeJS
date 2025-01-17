@@ -151,3 +151,8 @@ Status: ignore, interested, accepted, rejected
 - read about index in mongoDB
 - why do we need index in DB? adv and disadv of creating indexes?
 - what are compound indexes?
+
+# S2E14 - Building /feed API and pagination
+
+- create /feed API
+- explore $nin, $and, $ne and other query operators
