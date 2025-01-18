@@ -1,6 +1,6 @@
 # DevTinder Application UI part
 
-## Project Setup
+## Part 1 - Project Setup
 
 - create vite + react application
   npm create vite@latest Frontend -- --template react
@@ -13,3 +13,12 @@
   npm i react-router-dom
 - create BrowserRouter > Routes > Route=/body > RouteChildren
 - create an <Outlet /> in Body.jsx which holds all RouteChildren
+
+## Part 2
+
+- install axios => npm i axios
+- install CORS in backend => npm i cors > add middleware with configuration: origin & credentials: true in app.js
+- whenever making an API call, pass axios => {withCredentials: true}
+- install redux-toolkit => npm i @reduxjs/toolkit react-redux - https://react-redux.js.org/tutorials/quick-start
+- steps involved in store: configureStore > Provider > createSlice > add reducer to store > dispatch (useDispatch) > subscribed to store (useSelector)
+- hooks: useState, useNavigate
