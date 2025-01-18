@@ -22,3 +22,10 @@
 - install redux-toolkit => npm i @reduxjs/toolkit react-redux - https://react-redux.js.org/tutorials/quick-start
 - steps involved in store: configureStore > Provider > createSlice > add reducer to store > dispatch (useDispatch) > subscribed to store (useSelector)
 - hooks: useState, useNavigate
+
+## Part 3
+
+- other Routes are made inaccessible without login
+- if token not present, redirect user to login page
+- create Logout page
+- create Profile page
