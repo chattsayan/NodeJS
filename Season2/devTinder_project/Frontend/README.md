@@ -27,5 +27,7 @@
 
 - other Routes are made inaccessible without login
 - if token not present, redirect user to login page
-- create Logout page
-- create Profile page
+- Logout feature
+- get feed and add feed in the store
+- UserCard built on feed
+- profile/edit created

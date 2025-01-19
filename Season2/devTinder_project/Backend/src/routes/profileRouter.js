@@ -23,11 +23,11 @@ router.patch("/profile/edit", userAuth, async (req, res) => {
     }
 
     const loggedInUser = req.user;
-    console.log(loggedInUser);
+    // console.log(loggedInUser);
 
     // Update fields
     Object.keys(req.body).forEach((key) => (loggedInUser[key] = req.body[key]));
-    console.log(loggedInUser);
+    // console.log(loggedInUser);
 
     await loggedInUser.save();
 
