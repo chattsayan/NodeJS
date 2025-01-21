@@ -27,9 +27,16 @@ router.post("/signup", async (req, res) => {
       password: encryptPassword,
     });
 
-    // Saving the User to the Database
-    await user.save();
-    res.status(201).send({ message: "User added successfully!", user });
+    const savedUser = await user.save();
+    const token = await savedUser.getJWT();
+
+    res.cookie("token", token, {
+      expires: new Date(Date.now() + 8 * 3600000),
+    });
+
+    res
+      .status(201)
+      .json({ message: "User added successfully!", data: savedUser });
   } catch (err) {
     res.status(400).send(`SignUp Error: ${err.message}`);
   }

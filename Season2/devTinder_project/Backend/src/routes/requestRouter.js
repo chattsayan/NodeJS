@@ -18,8 +18,8 @@ router.post("/request/send/:status/:toUserId", userAuth, async (req, res) => {
     }
 
     // Checking if toUserId Exists
-    const toUSer = await User.findById(toUserId);
-    if (!toUSer) {
+    const toUser = await User.findById(toUserId);
+    if (!toUser) {
       return res.status(404).json({ message: "User not found!" });
     }
 
@@ -87,7 +87,7 @@ router.post(
 
       const data = await connectionRequest.save();
 
-      res.status(200).json({ message: "Connection request " + status, data });
+      res.status(200).json({ message: `Connection request ${status}`, data });
     } catch (err) {
       res.status(400).json({ message: "Connection request not found" });
     }

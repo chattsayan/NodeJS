@@ -24,7 +24,7 @@ router.get("/user/requests/received", userAuth, async (req, res) => {
       "skills",
     ]);
 
-    res.join({
+    res.status(200).json({
       message: "Data fetched successfully",
       data: connectionRequests,
     });
@@ -71,7 +71,7 @@ router.get("/feed", userAuth, async (req, res) => {
     const loggedInUser = req.user;
 
     const page = parseInt(req.query.page) || 1;
-    let limit = parseInt(req.query.limit);
+    let limit = parseInt(req.query.limit) || 10;
     limit = limit > 50 ? 50 : limit;
     const skip = (page - 1) * limit;
 
@@ -85,7 +85,7 @@ router.get("/feed", userAuth, async (req, res) => {
       hideUsersFromFeed.add(req.fromUserId.toString());
       hideUsersFromFeed.add(req.toUserId.toString());
     });
-    console.log(hideUsersFromFeed);
+    // console.log(hideUsersFromFeed);
 
     const users = await User.find({
       $and: [

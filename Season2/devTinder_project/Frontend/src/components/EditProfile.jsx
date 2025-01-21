@@ -7,9 +7,10 @@ import { addUser } from "../utils/userSlice";
 const EditProfile = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [age, setAge] = useState(user.age);
-  const [gender, setGender] = useState(user.gender);
-  const [about, setAbout] = useState(user.about);
+  const [age, setAge] = useState(user.age || "");
+  const [gender, setGender] = useState(user.gender || "");
+  const [about, setAbout] = useState(user.about || "");
+  const [photo, setPhoto] = useState(user.photoUrl);
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
@@ -97,6 +98,16 @@ const EditProfile = ({ user }) => {
               />
             </label>
           </div>
+
+          <label className="input input-bordered flex items-center gap-2 w-full mb-4">
+            <input
+              type="text"
+              className="grow"
+              placeholder="Photo URL"
+              value={photo}
+              onChange={(e) => setPhoto(e.target.value)}
+            />
+          </label>
 
           <textarea
             className="textarea textarea-bordered w-full mb-3"

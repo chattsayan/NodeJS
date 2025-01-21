@@ -37,12 +37,16 @@ const userSchema = new mongoose.Schema(
     age: { type: Number, min: [18, "Age must be atleast 18"] },
     gender: {
       type: String,
-      // ----- CUSTOM VALIDATION -----
-      validate(value) {
-        if (!["Male", "Female", "Others"].includes(value)) {
-          throw new Error("Gender Data is not valid.");
-        }
+      enum: {
+        values: ["Male", "Female", "Others"],
+        message: `{VALUE} is not a valid Gender type`,
       },
+      // ----- CUSTOM VALIDATION -----
+      // validate(value) {
+      //   if (!["Male", "Female", "Others"].includes(value)) {
+      //     throw new Error("Gender Data is not valid.");
+      //   }
+      // },
     },
     photoUrl: {
       type: String,
@@ -71,7 +75,7 @@ const userSchema = new mongoose.Schema(
 userSchema.methods.getJWT = async function () {
   const user = this;
 
-  const token = jwt.sign({ _id: user._id }, "DEV@Tinder$123", {
+  const token = await jwt.sign({ _id: user._id }, "DEV@Tinder$123", {
     expiresIn: "1h",
   });
 

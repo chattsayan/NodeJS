@@ -9,6 +9,7 @@ const connectionRequestSchema = new mongoose.Schema(
     },
     toUserId: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     status: {
@@ -25,6 +26,9 @@ const connectionRequestSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+// ----- INDEXING -----
+connectionRequestSchema.index({ fromUserId: 1, toUserId: 1 });
 
 // Pre-save Middleware - runs before a ConnectionRequest document is saved to the database.
 connectionRequestSchema.pre("save", function (next) {
