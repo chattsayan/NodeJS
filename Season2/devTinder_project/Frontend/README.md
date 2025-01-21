@@ -32,3 +32,9 @@
 - UserCard built on feed
 - profile/edit feature
 - toast message
+
+## Part 4
+
+- new page - see all connections
+- new page - see all connection requests
+- features - accept/reject connection request
