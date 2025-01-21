@@ -38,3 +38,5 @@
 - new page - see all connections
 - new page - see all connection requests
 - features - accept/reject connection request
+- send/ignore user card from feed
+- sign up feature

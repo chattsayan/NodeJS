@@ -43,6 +43,7 @@ const EditProfile = ({ user }) => {
     setAge("");
     setGender("");
     setAbout("");
+    setPhoto("");
     setError("");
   };
 

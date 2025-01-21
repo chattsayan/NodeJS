@@ -23,7 +23,7 @@ const Navbar = () => {
     <div className="navbar bg-secondary-content">
       <div className="flex-1 mx-5">
         <Link to="/" className="btn btn-ghost text-xl">
-          devTinder
+          CollabHub
         </Link>
       </div>
       {user && (
