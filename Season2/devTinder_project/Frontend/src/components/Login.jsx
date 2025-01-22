@@ -29,7 +29,7 @@ const Login = () => {
         }
       );
 
-      console.log(res.data);
+      // console.log(res.data);
       dispatch(addUser(res.data));
       return navigate("/");
     } catch (err) {
@@ -51,7 +51,7 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      console.log(res?.data?.data);
+      // console.log(res?.data?.data);
       dispatch(addUser(res?.data?.data));
       return navigate("/profile");
     } catch (err) {

@@ -10,7 +10,7 @@ const EditProfile = ({ user }) => {
   const [age, setAge] = useState(user.age || "");
   const [gender, setGender] = useState(user.gender || "");
   const [about, setAbout] = useState(user.about || "");
-  const [photo, setPhoto] = useState(user.photoUrl);
+  const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const EditProfile = ({ user }) => {
     try {
       const res = await axios.patch(
         `${BASE_URL}/profile/edit`,
-        { firstName, lastName, age, gender, about },
+        { firstName, lastName, photoUrl, age, gender, about },
         { withCredentials: true }
       );
 
@@ -33,7 +33,10 @@ const EditProfile = ({ user }) => {
         setShowToast(false);
       }, 3000);
     } catch (err) {
-      setError(err.response.data);
+      setError(
+        err.response?.data?.message ||
+          "An error occurred while updating the profile."
+      );
     }
   };
 
@@ -43,7 +46,7 @@ const EditProfile = ({ user }) => {
     setAge("");
     setGender("");
     setAbout("");
-    setPhoto("");
+    setPhotoUrl("");
     setError("");
   };
 
@@ -80,7 +83,7 @@ const EditProfile = ({ user }) => {
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Select Gender
                 </option>
                 <option value="Male">Male</option>
@@ -105,8 +108,8 @@ const EditProfile = ({ user }) => {
               type="text"
               className="grow"
               placeholder="Photo URL"
-              value={photo}
-              onChange={(e) => setPhoto(e.target.value)}
+              value={photoUrl}
+              onChange={(e) => setPhotoUrl(e.target.value)}
             />
           </label>
 
