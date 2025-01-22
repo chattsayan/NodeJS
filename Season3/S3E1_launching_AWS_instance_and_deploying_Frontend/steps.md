@@ -75,3 +75,32 @@ Then, Reattempt SSH Connection - Connect to your instance using its Public DNS
 
    - Verify npm version:
      npm -v # Should print "10.9.2".
+
+## cloning code repositories from github
+
+git clone https://github.com/coderRemo/networkHub-Backend.git
+git clone https://github.com/coderRemo/networkHub-Frontend.git
+
+## deploying Frontend part
+
+(system)
+
+- run npm run build in VS-code
+
+(machine/ubuntu)
+
+- move to frontend folder
+- npm install
+- npm run build
+- sudo apt update => this updates system dependencies/ubuntu updates
+- sudo apt install nginx => install nginx to host frontend project
+- sudo systemctl start nginx => start nginx
+- sudo systemctl enable nginx => enables nginx, up and running
+- copy code from dist(build files) to /var/www/html/
+  sudo scp -r dist/\* /var/www/html/
+
+- before checking the Public IPv4 address -> server is accessed on this IPv4
+- enable port 80 on your instance
+- search for Security tab > security groups > click on it
+- edit Inbound rules to allow access to port 80 > click on it
+- click on add rule > set port range 80 > click on searcg 0.0.0.0/0
