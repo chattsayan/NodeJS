@@ -18,5 +18,44 @@
 - shows list of processes: pm2 list
 - to stop process: pm2 stop npm
 - to delete process: pm2 delete npm
+- to name process: pm2 start npm --name "<name>" -- start
 
 ## merging Frontend & Backend
+
+plan:
+Frontend = http://<ip>/
+Backend = http://<ip>:<port>/
+
+Domain name = devtinder.com => as we do not have any domain name, <ip> will be considered as domain name
+
+Frontend = devtinder.com
+Backend = devtinder.com:<port> => devtinder.com/api
+
+ie, backend will run on /api and frontend will run on devtinder.com
+
+in order to merger the port, need to use nginx proxy pass
+
+- Update the Nginx Configuration File
+
+  - go to path: sudo nano /etc/nginx/sites-available/default
+
+  - scroll down and chanhe the below configurations:
+    server_name yourdomain.com; # Replace with your domain or IP address
+
+    location /api/ {
+    proxy_pass http://127.0.0.1:7777/; # in place of IP put localhost
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+    }
+
+  - restart nginx: sudo systemctl restart nginx
+
+- modify the BASE_URL in frontend project to /api
+- commit in gitHub
+- in machine > go to frontend directory, type the below commands:
+  - git pull
+  - npm run build
+  - sudo scp -r dist/\* /var/www/html
