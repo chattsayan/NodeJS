@@ -103,4 +103,4 @@ git clone https://github.com/coderRemo/networkHub-Frontend.git
 - enable port 80 on your instance
 - search for Security tab > security groups > click on it
 - edit Inbound rules to allow access to port 80 > click on it
-- click on add rule > set port range 80 > click on searcg 0.0.0.0/0
+- click on add rule > set port range 80 > click on search 0.0.0.0/0
