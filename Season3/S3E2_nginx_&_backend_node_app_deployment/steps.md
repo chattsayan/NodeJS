@@ -1,3 +1,5 @@
+Check the frontend part first
+
 # Nginx & Backend Node App Deployment
 
 - move to backend folder
