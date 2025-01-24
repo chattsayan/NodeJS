@@ -55,7 +55,7 @@ app.post("/login", async (req, res) => {
 
     if (isPasswordValid) {
       // create a JWT token
-      // const token = jwt.sign({ _id: user._id }, "DEV@Tinder$123", { expiresIn: "1h" });
+      // const token = jwt.sign({ _id: user._id }, process.env.JWT_PRIVATE_KEY, { expiresIn: "1h" });
       const token = await user.getJWT();
       // console.log(token);
 
