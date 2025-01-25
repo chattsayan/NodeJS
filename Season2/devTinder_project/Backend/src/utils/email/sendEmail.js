@@ -33,7 +33,7 @@ const createSendEmailCommand = (toAddress, fromAddress, subject, body) => {
   });
 };
 
-const run = async (subject, body) => {
+const run = async (subject, body, toEmail) => {
   const sendEmailCommand = createSendEmailCommand(
     //   these email ids should be verified in amazon SES, else email will not go through sandBox
     "recipient@example.com", // email (toAddress)

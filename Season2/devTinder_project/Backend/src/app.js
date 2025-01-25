@@ -5,6 +5,9 @@ const cors = require("cors");
 require("dotenv").config();
 const app = express();
 
+// ----- CRON JOB for scheduling task -----
+// require("./utils/cronjob");
+
 // ----- MIDDLEWARE -----
 app.use(
   cors({

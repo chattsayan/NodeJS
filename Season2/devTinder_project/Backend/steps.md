@@ -1,5 +1,5 @@
 - create a repository => \devTinder_project\Backend
-- initialize the repository => npm in it
+- initialize the repository => npm init
 - node_modules, package.json, package-lock.json
 - install Express JS => npm i express
 - create a server
