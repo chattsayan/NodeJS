@@ -3,6 +3,7 @@ import { BASE_URL } from "../utils/constants";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/connectionSlice";
+import { Link } from "react-router-dom";
 
 const Connections = () => {
   const connections = useSelector((store) => store.connection);
@@ -39,25 +40,31 @@ const Connections = () => {
         return (
           <div
             key={_id}
-            className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto gap-5"
+            className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto gap-5 items-center justify-between"
           >
-            <div>
-              <img
-                alt="photo"
-                src={photoUrl}
-                className="w-20 h-20 rounded-full object-cover mx-4"
-              />
-            </div>
-
-            <div className="flex flex-col justify-start items-start mx-6">
-              <div className="text-left">
-                <h2 className="font-bold text-xl">{`${firstName} ${lastName}`}</h2>
+            <div className="flex flex-row items-center">
+              <div>
+                <img
+                  alt="photo"
+                  src={photoUrl}
+                  className="w-20 h-20 rounded-full object-cover mx-4"
+                />
               </div>
 
-              {age && gender && <p>{`${gender}, ${age} years`}</p>}
+              <div className="flex flex-col justify-start items-start mx-6">
+                <div className="text-left">
+                  <h2 className="font-bold text-xl">{`${firstName} ${lastName}`}</h2>
+                </div>
 
-              <p className="text-left">{about}</p>
+                {age && gender && <p>{`${gender}, ${age} years`}</p>}
+
+                <p className="text-left">{about}</p>
+              </div>
             </div>
+
+            <Link to={`/chat/${_id}`} className="mx-4">
+              <button className="btn bg-green-600 text-white">Chat</button>
+            </Link>
           </div>
         );
       })}

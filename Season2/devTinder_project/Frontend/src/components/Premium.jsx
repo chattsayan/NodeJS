@@ -1,7 +1,24 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
+import { useEffect, useState } from "react";
 
 const Premium = () => {
+  const [isUserPremium, setIsUserPremium] = useState(false);
+
+  const verifyPremiumUser = async () => {
+    const res = axios.get(`${BASE_URL}/premium/verify`, {
+      withCredentials: true,
+    });
+
+    if (res.data.isPremium) {
+      setIsUserPremium(true);
+    }
+  };
+
+  useEffect(() => {
+    verifyPremiumUser();
+  }, []);
+
   const handleBuyClick = async (type) => {
     const order = await axios.post(
       `${BASE_URL}/payment/create`,
@@ -26,6 +43,8 @@ const Premium = () => {
       theme: {
         color: "#F37254",
       },
+      // when payment dialog box is closed, this function will be called
+      handler: verifyPremiumUser,
     };
 
     // open the razorpay payment dialog box on click
@@ -33,7 +52,9 @@ const Premium = () => {
     rzp.open();
   };
 
-  return (
+  return isUserPremium ? (
+    "You're already a Premium User"
+  ) : (
     <div>
       <div className="container px-6 py-8 mx-auto">
         <h1 className="text-2xl font-semibold text-center text-gray-300 lg:text-3xl">
