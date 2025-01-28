@@ -24,6 +24,7 @@ const authRouter = require("./routes/authRouter");
 const profileRouter = require("./routes/profileRouter");
 const requestRouter = require("./routes/requestRouter");
 const userRouter = require("./routes/userRouter");
+const chatRouter = require("./routes/chatRouter");
 const initializeSocket = require("./utils/socket");
 // const paymentRouter = require("./routes/paymentRouter");
 
@@ -33,6 +34,7 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 // app.use("/", paymentRouter);
+app.use("/", chatRouter);
 
 const server = http.createServer(app);
 // Initialize WebSocket server

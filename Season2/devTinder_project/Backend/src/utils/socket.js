@@ -1,5 +1,6 @@
 const socket = require("socket.io");
 const crypto = require("crypto");
+const { Chat } = require("../models/chat");
 
 // Generating a Secret Room ID
 const getSecretRoomId = (userId, targetUserId) => {
@@ -20,8 +21,6 @@ const initializeSocket = (server) => {
 
   // accept/listening connection
   io.on("connection", (socket) => {
-    console.log("USER connected");
-
     // handle events
     // Listens for a joinChat event sent by the client.
     socket.on("joinChat", ({ firstName, userId, targetUserId }) => {
@@ -32,14 +31,39 @@ const initializeSocket = (server) => {
       socket.join(roomId);
     });
 
-    socket.on("sendMessage", ({ firstName, userId, targetUserId, text }) => {
-      // const roomId = getSecretRoomId(userId, targetUserId);
-      const roomId = [userId, targetUserId].sort().join("_");
-      console.log(`${firstName} sent message: ${text} to room: ${roomId}`);
+    socket.on(
+      "sendMessage",
+      async ({ firstName, userId, targetUserId, text }) => {
+        try {
+          const roomId = getSecretRoomId(userId, targetUserId);
+          // const roomId = [userId, targetUserId].sort().join("_");
+          console.log(`${firstName} : ${text}`);
 
-      // server transfers the message to the client(room)
-      io.to(roomId).emit("messageReceived", { firstName, text });
-    });
+          let chat = await Chat.findOne({
+            participants: { $all: [userId, targetUserId] },
+          });
+
+          if (!chat) {
+            chat = new Chat({
+              participants: [userId, targetUserId],
+              messages: [],
+            });
+          }
+
+          chat.messages.push({
+            senderId: userId,
+            text,
+          });
+
+          await chat.save();
+
+          // server transfers the message to the client(room)
+          io.to(roomId).emit("messageReceived", { firstName, text });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
 
     socket.on("disconnect", () => {});
   });
